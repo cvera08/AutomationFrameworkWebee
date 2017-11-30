@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DEBUG Suite" thread-count="1" parallel="tests">
+    <listeners>
+        <listener class-name="utils.ExtentReporterNG"/>
+    </listeners>
+
+    <parameter name="browser" value="INTERNET_EXPLORER"/>
+
+    <test name="INTERNET_EXPLORER Tests">
+        <classes>
+            <class name="tests.CheckHealthTests"/>
+        </classes>
+    </test>
+
+</suite>

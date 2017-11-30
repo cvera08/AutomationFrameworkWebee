@@ -1,0 +1,6 @@
+.idea
+target/
+test-output/
+#debug.XML is a file to make tests in your locally
+debug.XML
+src/test/java/utils/CreateWebDriverFromSession.java

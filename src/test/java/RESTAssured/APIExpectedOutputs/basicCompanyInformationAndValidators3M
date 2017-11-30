@@ -1,0 +1,24 @@
+{
+  "data": {
+    "info": {
+      "companyId": "a128faec-9dcc-4cda-a21c-65f5a8e36862",
+      "name": "Company 3M",
+      "logo": "/-/media/Images/Companies/3Mlogo.ashx",
+      "level1": false
+    },
+    "validators": [
+      {
+        "name": "EID",
+        "mask": "alpha",
+        "to": "EmployeeId",
+        "mandatory": true
+      },
+      {
+        "name": "Email",
+        "mask": "email",
+        "to": "Email",
+        "mandatory": false
+      }
+    ]
+  }
+}

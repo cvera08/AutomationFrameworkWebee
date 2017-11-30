@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite Automation Base Project" thread-count="10" parallel="tests">
+    <listeners>
+        <listener class-name="utils.ExtentReporterNG"/>
+        <listener class-name="utils.AnnotationTransformer"/>
+    </listeners>
+
+    <test name="CheckTest for Google">
+        <classes>
+            <class name="tests.CheckHealthTests"/>
+        </classes>
+    </test>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="successfulLogin">
+                        <parameter name="username" value="auto_planner"/>
+                        <parameter name="password" value="Qwerty12345"/>
+                    </include>
+
+                    <include name="failedLogin">
+                        <parameter name="username" value="auto_planner"/>
+                        <parameter name="password" value="invalid"/>
+                    </include>
+
+                    <include name="mandatoryFieldsLogin">
+                        <parameter name="username" value="auto_planner"/>
+                        <parameter name="password" value="Qwerty12345"/>
+                    </include>
+
+                    <include name="logoutAfterLogin"/>
+
+                    <include name="mandatoryFields3MCompany">
+                        <parameter name="username" value="auto_planner"/>
+                        <parameter name="password" value="Qwerty12345"/>
+                    </include>
+
+                    <include name="failedLoginGlobal">
+                        <parameter name="username" value="jzgdf"/>
+                        <parameter name="password" value="hgsdfg"/>
+                    </include>
+
+                    <include name="failedLogin3M">
+                        <parameter name="username" value="jzgdf"/>
+                        <parameter name="password" value="hgsdfg"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
