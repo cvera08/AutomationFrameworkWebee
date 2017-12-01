@@ -23,7 +23,7 @@ public class BaseProperties {
     }
 
     public String getBaseUrl() {
-        return getPreReleaseUrl(); //Change According the environment you need to use
+        return getStagingUrl(); //Change According the environment you need to use
     }
 
     private String getPreReleaseUrl() {
