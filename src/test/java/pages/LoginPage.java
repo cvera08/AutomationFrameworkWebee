@@ -3,8 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -22,20 +20,7 @@ public class LoginPage extends BasePage {
     private String userName;
     private String password;
 
-    @FindBy(id = "Username")
-    private WebElement userNameInput;
-
-    @FindBy(id = "Password")
-    private WebElement passwordInput;
-
-    @FindBy(css = "input[value='Login']")
-    private WebElement loginButton;
-
-    @FindBy(xpath = "//span[@class='field-validation-error' and text()='Password is required']")
-    private WebElement passwordRequired;
-
-    @FindBy(xpath = "//span[@class='field-validation-error' and text()='Username is required']")
-    private WebElement usernameRequired;
+    private By loginBtn = By.tagName("button");
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver, "/login", "Login");
@@ -45,12 +30,6 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver webDriver, BaseCompanies.Companies companyName) {
         super(webDriver, companyName, "/login", "Login");
         setLoginPage();
-    }
-
-    public LoginPage verifyLoginErrorTextGlobal(String errorMessage) {
-        By by = By.xpath("(//div[@class='row']//form[@action='/login']//div[contains(text(),'" + errorMessage + "')]//text())[1]//parent::div");
-        BaseSelenium.isDisplayed(errorMessage, webDriver.findElement(by));
-        return this;
     }
 
     private void setLoginPage() {
@@ -67,20 +46,20 @@ public class LoginPage extends BasePage {
      * @return
      */
     private LoginPage loginPageIsDisplayed() {
-        BaseSelenium.isDisplayed("Login Button", loginButton);
+        BaseSelenium.isDisplayed("Login Button", webDriver, loginBtn, true);
         return this;
     }
 
     /**
      * It performs the steps needed to login (enter credentials and press login)
      * This method is used for the successful log in
-     * After the user is logged is redirected to Task Panel Page
+     * After the user is logged is redirected to Landing Page
      *
      * @param username
      * @param password
      * @return
      */
-    public TaskPanelPage login(String username, String password) {
+    public LandingPage login(String username, String password) {
         this.userName = username;
         this.password = password;
         return enterUserName(username)
@@ -89,7 +68,7 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * Use this method to avoid to wait for load of the next page after successfully login (TaskPanelPage)
+     * Use this method to avoid to wait for load of the next page after successfully login (LandingPage)
      *
      * @param username
      * @param password
@@ -108,31 +87,29 @@ public class LoginPage extends BasePage {
                     .enterPassword(password)
                     .pressLoginButton();
         } catch (TimeoutException e) {
-            // Ignore the exception.
-            webDriver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS); //new default Timeout set in 2 mins
-            return new BasePage(webDriver, "", ""); //Just to improving execution time (avoid to wait for load of TaskPanelPage)
+            return new BasePage(webDriver, "", ""); //Just to improving execution time (avoid to wait for load of LandingPage)
         }
     }
 
     private LoginPage enterUserName(String username) {
-        BaseSelenium.enterTextInInputBox("UserName", username, userNameInput);
+        BaseSelenium.enterTextUsingWaits(webDriver, By.id("username"), username, 5);
         return this;
     }
 
     private LoginPage enterPassword(String password) {
-        BaseSelenium.enterTextInInputBox("Password", password, passwordInput);
+        BaseSelenium.enterTextUsingWaits(webDriver, By.id("password"), password, 5);
         return this;
     }
 
     /**
      * Press Login button and it's logged ok
-     * The user is redirected to the Task Panel Page after valid credentials
+     * The user is redirected to the Landing Page after enter valid credentials
      *
      * @return
      */
-    private TaskPanelPage pressLoginButton() {
-        BaseSelenium.pressElement("Login", loginButton);
-        return new TaskPanelPage(webDriver);
+    private LandingPage pressLoginButton() {
+        BaseSelenium.pressElementUsingWaits(webDriver, loginBtn, 5);
+        return new LandingPage(webDriver);
     }
 
     /**
@@ -158,7 +135,7 @@ public class LoginPage extends BasePage {
      * @return
      */
     private LoginPage pressLoginButtonAndKeepInLoginPage() {
-        BaseSelenium.pressElement("Login", loginButton);
+        BaseSelenium.pressElementUsingWaits(webDriver, loginBtn, 5);
         loginPageIsDisplayed();
         return this;
     }
@@ -169,7 +146,7 @@ public class LoginPage extends BasePage {
      * @return
      */
     public LoginPage verifyUsernameIsRequired() {
-        BaseSelenium.isDisplayed("Username is required", usernameRequired);
+        BaseSelenium.isDisplayed("Username is required", webDriver, By.xpath("//span[@class='field-validation-error' and text()='Username is required']"), true);
         return this;
     }
 
@@ -179,7 +156,7 @@ public class LoginPage extends BasePage {
      * @return
      */
     public LoginPage verifyPasswordIsRequired() {
-        BaseSelenium.isDisplayed("Password is required", passwordRequired);
+        BaseSelenium.isDisplayed("Password is required", webDriver, By.xpath("//span[@class='field-validation-error' and text()='Password is required']"), true);
         return this;
     }
 

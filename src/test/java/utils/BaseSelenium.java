@@ -1,6 +1,9 @@
 package utils;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -16,19 +19,6 @@ import java.util.concurrent.TimeUnit;
  * It's like the utils but for Selenium methods
  */
 public class BaseSelenium {
-
-    /**
-     * @param field      : Name of the field to enter the data. Just text to be displayed in the HTML report
-     * @param text       : Text to be entered in the text/input box
-     * @param webElement : text/input box to enter the data (text parameter)
-     * @deprecated use {@link #enterTextUsingWaits(WebDriver, By, String, long)}  instead
-     */
-    @Deprecated
-    public static void enterTextInInputBox(String field, String text, WebElement webElement) {
-        clearTextInInputBox(field, webElement);
-        Reporter.log("Entering " + field + ": " + text);
-        webElement.sendKeys(text);
-    }
 
     /**
      * @param field      : Name of the field to clear the data. Just text to be displayed in the HTML report
@@ -48,39 +38,6 @@ public class BaseSelenium {
     public static void pressElement(String elementName, WebElement webElement) {
         Reporter.log("Click on '" + elementName + "'");
         webElement.click();
-    }
-
-    /**
-     * Use this method to avoid: "unknown error: Element is not clickable at point"
-     * Use this method when you need to click in a list of elements!
-     *
-     * @param elementName : Name of the button (or element) to be pressed. Just text to be displayed in the HTML report
-     * @param webElement  : button (webElement actually) to be clicked
-     * @param webDriver
-     * @deprecated use {@link #pressElementUsingWaits}  instead
-     */
-    @Deprecated
-    public static void pressElementMovingToElement(String elementName, WebElement webElement, WebDriver webDriver) {
-        Reporter.log("Click on '" + elementName + "'");
-        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", webElement); //Move To Element
-        webElement.click();
-    }
-
-    /**
-     * We are using this method instead of default Selenium isDisplayed() because we need to catch the exception for the HTML Report if the element is not present or not valid
-     * You can use this method to check if an specific text is displayed too
-     *
-     * @param webElement
-     * @deprecated use {@link #isDisplayed(String webElementName, WebDriver webDriver, By by, boolean visibility)}  instead
-     */
-    @Deprecated
-    public static void isDisplayed(String webElementName, WebElement webElement) {
-        try {
-            Reporter.log("Verifying that '" + webElementName + "' is displayed");
-            webElement.isDisplayed();
-        } catch (NoSuchElementException e) {
-            throw new RuntimeException("Element '" + webElementName + "'. Not Found");
-        }
     }
 
     /**

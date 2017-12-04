@@ -172,5 +172,4 @@ public class BasePage {
         BaseSelenium.pressElement("YES", webDriver.findElement(yesButtonInLogoutPopupXpath));
         return new LoginPage(webDriver);
     }
-
 }

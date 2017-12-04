@@ -116,5 +116,4 @@ public class BaseSqlShell {
     public void convertCompletedToOpenTask(String subject) {
         runScript("convertCompletedToOpenTask", subject);
     }
-
 }

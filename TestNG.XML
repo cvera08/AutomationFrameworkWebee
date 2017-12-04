@@ -6,46 +6,20 @@
         <listener class-name="utils.AnnotationTransformer"/>
     </listeners>
 
-    <test name="CheckTest for Google">
-        <classes>
-            <class name="tests.CheckHealthTests"/>
-        </classes>
-    </test>
-
     <test name="Login Tests">
         <classes>
             <class name="tests.LoginTests">
                 <methods>
-                    <include name="successfulLogin">
-                        <parameter name="username" value="auto_planner"/>
-                        <parameter name="password" value="Qwerty12345"/>
-                    </include>
+
 
                     <include name="failedLogin">
-                        <parameter name="username" value="auto_planner"/>
-                        <parameter name="password" value="invalid"/>
+                        <parameter name="username" value="invalid"/>
+                        <parameter name="password" value="no valid"/>
                     </include>
 
-                    <include name="mandatoryFieldsLogin">
-                        <parameter name="username" value="auto_planner"/>
-                        <parameter name="password" value="Qwerty12345"/>
-                    </include>
-
-                    <include name="logoutAfterLogin"/>
-
-                    <include name="mandatoryFields3MCompany">
-                        <parameter name="username" value="auto_planner"/>
-                        <parameter name="password" value="Qwerty12345"/>
-                    </include>
-
-                    <include name="failedLoginGlobal">
-                        <parameter name="username" value="jzgdf"/>
-                        <parameter name="password" value="hgsdfg"/>
-                    </include>
-
-                    <include name="failedLogin3M">
-                        <parameter name="username" value="jzgdf"/>
-                        <parameter name="password" value="hgsdfg"/>
+                    <include name="successfulLogin">
+                        <parameter name="username" value="juan.prado"/>
+                        <parameter name="password" value="131313"/>
                     </include>
                 </methods>
             </class>

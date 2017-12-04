@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import utils.BaseCompanies;
 import utils.BaseRestAssured;
-import utils.HtmlFormatter;
 
 import static com.jayway.restassured.RestAssured.given;
 
@@ -17,7 +16,7 @@ import static com.jayway.restassured.RestAssured.given;
  * Created by Carlos Vera on 08/25/2017.
  * Tests for check API endpoints
  */
-public class RESTAssuredTests extends BaseTest{
+public class RESTAssuredTests extends BaseTest {
 
     @DataProvider(name = "CompanyInformation")
     public static Object[][] companyInformationData() {

@@ -11,7 +11,6 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import utils.BaseProperties;
-import utils.CreateWebDriverFromSession;
 
 import java.io.File;
 import java.io.IOException;
