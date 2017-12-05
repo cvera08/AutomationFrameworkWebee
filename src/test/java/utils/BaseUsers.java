@@ -6,15 +6,6 @@ package utils;
  */
 public class BaseUsers {
 
-    public static String plannerUsername = "plannerUser";
-    public static String plannerPassword = "Qwerty12345";
-
-    public static String cSRUsername = "adminUser";
-    public static String cSRPassword = "Qwerty12345";
-
-    public static String employeeUsername = "demoUser";
-    public static String employeePassword = "Qwerty12345";
-
-    public static String employeeUsernameSpectra = "spectra_demo";
-    public static String employeePasswordSpectra = "Qwerty12345";
+    public static String automationUsername = "juan.prado";
+    public static String automationPassword = "131313";
 }

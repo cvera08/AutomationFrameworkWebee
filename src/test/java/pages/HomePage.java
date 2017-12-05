@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 import utils.BaseSelenium;
 
@@ -10,17 +9,21 @@ import utils.BaseSelenium;
  * Created by Carlos Vera on 08/03/2017.
  */
 
-public class LandingPage extends BasePage {
+public class HomePage extends BasePage {
 
-    public LandingPage(WebDriver webDriver) {
+    /**
+     * Options available are:  Enterprises, Projects, Linked accounts, Connections, etc
+     */
+    private String mainSelectorForHomeOption = "//div[text()="; //To be easier to maintain (and avoid duplications)
+
+    public HomePage(WebDriver webDriver) {
         super(webDriver, "/", "Webee Visual IoT");
-        PageFactory.initElements(webDriver, this);
     }
 
     @Override
-    public LandingPage navigateToPage() {
+    public HomePage navigateToPage() {
         Reporter.log("Navigating to Landing Page");
-        return (LandingPage) super.navigateToPage();
+        return (HomePage) super.navigateToPage();
     }
 
     /**
@@ -29,9 +32,19 @@ public class LandingPage extends BasePage {
      *
      * @return
      */
-    public LandingPage landingPageIsDisplayed() {
+    public HomePage landingPageIsDisplayed() {
         Reporter.log("Verifying that 'Webee Visual IoT' title is displayed");
         BaseSelenium.presenceOfElementUsingExplicitWait(webDriver, 5, By.xpath("//title[contains(text(),'Webee Visual IoT')]"));
         return this;
+    }
+
+    /**
+     * Click on "Hubs" option in the Home Page
+     *
+     * @return
+     */
+    public HubsPage clickOnHubs() {
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Hubs']"), 5);
+        return new HubsPage(webDriver);
     }
 }

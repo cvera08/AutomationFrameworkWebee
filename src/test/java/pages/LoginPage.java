@@ -59,7 +59,7 @@ public class LoginPage extends BasePage {
      * @param password
      * @return
      */
-    public LandingPage login(String username, String password) {
+    public HomePage login(String username, String password) {
         this.userName = username;
         this.password = password;
         return enterUserName(username)
@@ -68,7 +68,7 @@ public class LoginPage extends BasePage {
     }
 
     /**
-     * Use this method to avoid to wait for load of the next page after successfully login (LandingPage)
+     * Use this method to avoid to wait for load of the next page after successfully login (HomePage)
      *
      * @param username
      * @param password
@@ -87,7 +87,7 @@ public class LoginPage extends BasePage {
                     .enterPassword(password)
                     .pressLoginButton();
         } catch (TimeoutException e) {
-            return new BasePage(webDriver, "", ""); //Just to improving execution time (avoid to wait for load of LandingPage)
+            return new BasePage(webDriver, "", ""); //Just to improving execution time (avoid to wait for load of HomePage)
         }
     }
 
@@ -107,9 +107,9 @@ public class LoginPage extends BasePage {
      *
      * @return
      */
-    private LandingPage pressLoginButton() {
+    private HomePage pressLoginButton() {
         BaseSelenium.pressElementUsingWaits(webDriver, loginBtn, 5);
-        return new LandingPage(webDriver);
+        return new HomePage(webDriver);
     }
 
     /**

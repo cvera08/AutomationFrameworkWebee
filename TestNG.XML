@@ -10,8 +10,6 @@
         <classes>
             <class name="tests.LoginTests">
                 <methods>
-
-
                     <include name="failedLogin">
                         <parameter name="username" value="invalid"/>
                         <parameter name="password" value="no valid"/>
@@ -21,6 +19,16 @@
                         <parameter name="username" value="juan.prado"/>
                         <parameter name="password" value="131313"/>
                     </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Hubs Tests">
+        <classes>
+            <class name="tests.HubTests">
+                <methods>
+                    <include name="addEdgeHubController"/>
                 </methods>
             </class>
         </classes>
