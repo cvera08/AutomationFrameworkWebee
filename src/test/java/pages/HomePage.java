@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
 
     @Override
     public HomePage navigateToPage() {
-        Reporter.log("Navigating to Landing Page");
+        Reporter.log("Navigating to Home Page");
         return (HomePage) super.navigateToPage();
     }
 
@@ -32,7 +32,7 @@ public class HomePage extends BasePage {
      *
      * @return
      */
-    public HomePage landingPageIsDisplayed() {
+    public HomePage homePageIsDisplayed() {
         Reporter.log("Verifying that 'Webee Visual IoT' title is displayed");
         BaseSelenium.presenceOfElementUsingExplicitWait(webDriver, 5, By.xpath("//title[contains(text(),'Webee Visual IoT')]"));
         return this;

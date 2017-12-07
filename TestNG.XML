@@ -28,7 +28,10 @@
         <classes>
             <class name="tests.HubTests">
                 <methods>
-                    <include name="addEdgeHubController"/>
+                    <include name="addEdgeHubControllerEmptyMacAddress"/>
+                    <include name="addEdgeHubControllerLessThan12Characters">
+                        <parameter name="alphanumericCode" value="lessThan12"/>
+                    </include>
                 </methods>
             </class>
         </classes>

@@ -23,6 +23,6 @@ public class LoginTests extends BaseTest {
     public void successfulLogin(String username, String password) {
         new LoginPage(webDriver)
                 .login(username, password) //enter credentials and press login
-                .landingPageIsDisplayed(); //validate that it's redirected to the Landing Page
+                .homePageIsDisplayed(); //validate that it's redirected to the Landing Page
     }
 }

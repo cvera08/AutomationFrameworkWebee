@@ -30,24 +30,15 @@ public class BaseSelenium {
     }
 
     /**
-     * @param elementName : Name of the button (or element) to be pressed. Just text to be displayed in the HTML report
-     * @param webElement  : button (webElement actually) to be clicked
-     * @deprecated use {@link #pressElementUsingWaits}  instead
-     */
-    @Deprecated
-    public static void pressElement(String elementName, WebElement webElement) {
-        Reporter.log("Click on '" + elementName + "'");
-        webElement.click();
-    }
-
-    /**
      * Use this method to check if the element is displayed or not (based on the parameter visibility)
      *
      * @param webElementName : to print in the html report
      * @param webDriver      : to find the element
      * @param by             : selector type
      * @param visibility     : true or false (according what you need)
+     * @deprecated use {@link #isDisplayedUsingWaits  instead
      */
+    @Deprecated
     public static void isDisplayed(String webElementName, WebDriver webDriver, By by, boolean visibility) {
         Reporter.log("Verifying that '" + webElementName + "' is displayed: " + visibility);
         boolean result;
@@ -209,5 +200,47 @@ public class BaseSelenium {
         webElement.clear();
         Reporter.log("Typing: " + text + " in '" + by + "'");
         webElement.sendKeys(text);
+    }
+
+    /**
+     * Use this method to check if the element is displayed or not (based on the parameter visibility)
+     *
+     * @param webDriver        : to find the element
+     * @param by               : selector type
+     * @param timeOutInSeconds : time to wait until it fails
+     * @param webElementName   : to print in the html report
+     * @param visibility       : true or false (according what you need)
+     */
+    public static void isDisplayedUsingWaits(WebDriver webDriver, By by, long timeOutInSeconds, String webElementName, boolean visibility) {
+        Reporter.log("Verifying that '" + webElementName + "' is displayed: " + visibility);
+        //To avoid errors "stale element reference: element is not attached to the page document" in execution time
+        if (visibility) {
+            //wait for presence of the element
+            presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
+        } else {
+            int elementsMatching = webDriver.findElements(by).size();
+            //(elementsMatching < 1) == None element is displayed
+            Assert.assertTrue(elementsMatching < 1, "Number of Elements that are being displayed based on your parameters: " + elementsMatching + ". ");
+        }
+    }
+
+    /**
+     * Use this method to check if the element is displayed or not (based on the parameter visibility)
+     *
+     * @param webDriver        : to find the element
+     * @param tagName          : the one to be used in the selector
+     * @param text             : the text to be searched for
+     * @param contains         : if the selector should be used contains or text()='xxxxx'
+     * @param timeOutInSeconds : time to wait until it fails
+     * @param webElementName   : to print in the html report
+     * @param visibility       : true or false (according what you need)
+     */
+    public static void textInTagIsDisplayed(WebDriver webDriver, String tagName, String text, boolean contains, long timeOutInSeconds, String webElementName, boolean visibility) {
+        By selector;
+        if (contains)
+            selector = By.xpath("//" + tagName + "[contains(text(), '" + text + "')]");
+        else
+            selector = By.xpath("//" + tagName + "[text() = '" + text + "')]");
+        isDisplayedUsingWaits(webDriver, selector, timeOutInSeconds, webElementName, visibility);
     }
 }
