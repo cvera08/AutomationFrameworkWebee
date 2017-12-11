@@ -37,4 +37,13 @@
         </classes>
     </test>
 
+    <test name="Home Tests">
+        <classes>
+            <class name="tests.HomeTests">
+                <methods>
+                    <include name="verifyingComponentsOfUpperBar"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

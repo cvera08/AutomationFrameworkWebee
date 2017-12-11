@@ -22,18 +22,6 @@ public class BasePage {
     public WebDriver webDriver;
     BaseProperties baseProperties;
 
-    @FindBy(id = "profile-drop")
-    private WebElement userImage;
-
-    @FindBy(css = "a[data-target='#logoutModal']")
-    private WebElement logoutButton;
-
-    @FindBy(xpath = "//div[@id='logoutModal']//button[@class='btn btn-default']")
-    private WebElement noButtonInLogoutPopup;
-
-    @FindBy(xpath = "//div[@id='logoutModal']//button[@class='close']")
-    private WebElement closeButtonInLogoutPopup;
-
     @FindBy(css = "li a[href='/Secure/CompanyList']")
     private WebElement companiesButton;
 
@@ -111,14 +99,44 @@ public class BasePage {
     }
 
     /**
+     * It verifies that Hamburger icon/button is/is not displayed in the Home Page
+     *
+     * @return
+     */
+    public BasePage verifyHamburgerButtonIsDisplayed(boolean visible) {
+        BaseSelenium.isDisplayedUsingWaits(webDriver, By.cssSelector("a.button-collapse"), 5, "Hamburger Button", visible);
+        return this;
+    }
+
+    /**
+     * It verifies that enterprise name is/is not displayed in the Home Page
+     *
+     * @return
+     */
+    public BasePage verifyEnterpriseNameIsDisplayed(String enterpriseName, boolean visible) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "h4", enterpriseName, true, 5, "Enterprise Name: " + enterpriseName, visible);
+        return this;
+    }
+
+    /**
+     * It verifies that user name is/is not displayed in the Home Page
+     *
+     * @return
+     */
+    public BasePage verifyUsernameIsDisplayed(String username, boolean visible) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "div", username, true, 5, "Username: " + username, visible);
+        return this;
+    }
+
+    /**
      * Log out of the system
      * This method click on user image and then hit "Logout"
      *
      * @return
      */
     public BasePage pressLogout() {
-        BaseSelenium.pressElement("User Image", userImage);
-        BaseSelenium.pressElement("Logout Button", logoutButton);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.id("profile-drop"), 5);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.cssSelector("a[data-target='#logoutModal']"), 5);
         return this;
     }
 
@@ -142,8 +160,9 @@ public class BasePage {
      */
     public BasePage pressNoInLogoutPopup() {
         BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, By.xpath("//div[@id='logoutModal']//button[@class='btn btn-default']"));
-        BaseSelenium.pressElement("NO", noButtonInLogoutPopup);
-        BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, noButtonInLogoutPopup, 5); //To avoid false failures in the next steps
+        By noButtonInLogoutPopupSelector = By.xpath("//div[@id='logoutModal']//button[@class='btn btn-default']");
+        BaseSelenium.pressElementUsingWaits(webDriver, noButtonInLogoutPopupSelector, 5);
+        BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, webDriver.findElement(noButtonInLogoutPopupSelector), 5); //To avoid false failures in the next steps
         return this;
     }
 
@@ -155,8 +174,9 @@ public class BasePage {
      */
     public BasePage pressCloseInLogoutPopup() {
         BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, By.xpath("//div[@id='logoutModal']//button[@class='close']"));
-        BaseSelenium.pressElement("CLOSE (X)", closeButtonInLogoutPopup);
-        BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, closeButtonInLogoutPopup, 5);
+        By closeButtonInLogoutPopupSelector = By.xpath("//div[@id='logoutModal']//button[@class='close']");
+        BaseSelenium.pressElementUsingWaits(webDriver, closeButtonInLogoutPopupSelector, 5);
+        BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, webDriver.findElement(closeButtonInLogoutPopupSelector), 5);
         return this;
     }
 
@@ -169,7 +189,7 @@ public class BasePage {
     public LoginPage pressYesInLogoutPopup() {
         By yesButtonInLogoutPopupXpath = By.xpath("//div[@id='logoutModal']//a[contains(@href,'logout.aspx')]");
         BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, yesButtonInLogoutPopupXpath);
-        BaseSelenium.pressElement("YES", webDriver.findElement(yesButtonInLogoutPopupXpath));
+        BaseSelenium.pressElementUsingWaits(webDriver, yesButtonInLogoutPopupXpath, 5);
         return new LoginPage(webDriver);
     }
 }
