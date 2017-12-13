@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.HubsPage;
 import pages.LoginPage;
 import utils.BaseUsers;
@@ -27,8 +28,8 @@ public class HubTests extends BaseTest {
     @Test
     @Parameters("alphanumericCode")
     public void addEdgeHubControllerLessThan12Characters(String alphanumericCode) {
-        new LoginPage(webDriver)
-                .login(BaseUsers.automationUsername, BaseUsers.automationPassword)
+        new HomePage(webDriver)
+                .navigateToPage()
                 .clickOnHubs()
                 .clickOnAddEdgeHubController()
                 .selectFirstAccountOffered()

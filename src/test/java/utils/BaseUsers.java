@@ -6,6 +6,6 @@ package utils;
  */
 public class BaseUsers {
 
-    public static String automationUsername = "juan.prado";
+    public static String automationUsername = "carlos.vera";
     public static String automationPassword = "131313";
 }

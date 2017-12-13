@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -242,5 +243,15 @@ public class BaseSelenium {
         else
             selector = By.xpath("//" + tagName + "[text() = '" + text + "')]");
         isDisplayedUsingWaits(webDriver, selector, timeOutInSeconds, webElementName, visibility);
+    }
+
+    /**
+     * When you click on a link that is opened in a new tab, we need to move the selenium's focus to the new tab if we want to work on it
+     *
+     * @param tabNumber: current=0, new=1
+     */
+    public static void moveFocusToAnotherTab(WebDriver webDriver, int tabNumber) {
+        ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabNumber));
     }
 }

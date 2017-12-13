@@ -17,7 +17,7 @@ public class HomeTests extends BaseTest {
                 .login(BaseUsers.automationUsername, BaseUsers.automationPassword)
                 .homePageIsDisplayed()
                 .verifyHamburgerButtonIsDisplayed(true)
-                .verifyEnterpriseNameIsDisplayed("WEBEE", true)
-                .verifyUsernameIsDisplayed("juan.prado", true);
+                .verifyEnterpriseNameIsDisplayed("QA Automation - ARG", true)
+                .verifyUsernameIsDisplayed("carlos.vera", true);
     }
 }

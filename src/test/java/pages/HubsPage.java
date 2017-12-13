@@ -14,7 +14,7 @@ public class HubsPage extends BasePage {
     }
 
     public HubsPage clickOnAddEdgeHubController() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.tagName("button"), 5);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.cssSelector("i.material-icons.left"), 5);
         return this;
     }
 
