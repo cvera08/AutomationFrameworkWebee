@@ -46,4 +46,14 @@
             </class>
         </classes>
     </test>
+
+    <test name="App Tests">
+        <classes>
+            <class name="tests.AppTests">
+                <methods>
+                    <include name="turnOnPlug"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

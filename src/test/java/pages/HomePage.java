@@ -47,4 +47,14 @@ public class HomePage extends BasePage {
         BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Hubs']"), 5);
         return new HubsPage(webDriver);
     }
+
+    /**
+     * Click on "Projects" option in the Home Page
+     *
+     * @return
+     */
+    public ProjectsPage clickOnProjects() {
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Projects']"), 5);
+        return new ProjectsPage(webDriver);
+    }
 }
