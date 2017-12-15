@@ -21,6 +21,13 @@ public class AppTests extends BaseTest {
         changeStatePlug(homePage, true);
     }
 
+    @Test
+    public void turnOffPlug() {
+        HomePage homePage = new HomePage(webDriver)
+                .navigateToPage();
+        changeStatePlug(homePage, false);
+    }
+    
     /**
      * This method is an auxiliary method to the tests, in order to be easier to maintain them
      *
