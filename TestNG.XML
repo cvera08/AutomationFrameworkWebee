@@ -52,6 +52,7 @@
             <class name="tests.AppTests">
                 <methods>
                     <include name="turnOnPlug"/>
+                    <include name="turnOffPlug"/>
                 </methods>
             </class>
         </classes>

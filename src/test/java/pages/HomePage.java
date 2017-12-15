@@ -54,7 +54,7 @@ public class HomePage extends BasePage {
      * @return
      */
     public ProjectsPage clickOnProjects() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Projects']"), 5);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Projects']"), 10);
         return new ProjectsPage(webDriver);
     }
 }

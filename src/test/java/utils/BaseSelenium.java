@@ -1,9 +1,6 @@
 package utils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
@@ -155,7 +152,7 @@ public class BaseSelenium {
     }
 
     /**
-     * Use this method to clik on some element. e.g. button, checkbox, etc
+     * Use this method to click on some element. e.g. button, checkbox, etc
      * Wait for presence of element & element is clickable. Move to element
      *
      * @param webDriver
@@ -177,6 +174,33 @@ public class BaseSelenium {
         //perform the click
         Reporter.log("Click on '" + webElement.getText() + "'");
         webElement.click();
+    }
+
+    /**
+     * Use this method to click on some element when you can't use @link{pressElementUsingWaits} because it returns:
+     * >> "the element xxxxx is not clickable at point (X, Y). Other element would receive the click"
+     * in real time execution
+     * Wait for presence of element & element is clickable. Move to element & click using JS
+     *
+     * @param webDriver
+     * @param by
+     * @param timeOutInSeconds
+     */
+    public static void pressElementUsingJavaScript(WebDriver webDriver, By by, long timeOutInSeconds) {
+        //wait for presence of element
+        presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
+
+        //wait for clickable. FE: the element is present but there is a loading over the element/page
+        fluentWaitWaitingElementToBeClickable(webDriver, by);
+
+        WebElement webElement = webDriver.findElement(by);
+
+        //Move To Element (Scroll). To avoid unknown error: Element is not clickable at point (X, Y)
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(false);", webElement);
+
+        //perform the click
+        Reporter.log("Click on '" + webElement.getText() + "'");
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click()", webElement);
     }
 
     /**
@@ -253,5 +277,16 @@ public class BaseSelenium {
     public static void moveFocusToAnotherTab(WebDriver webDriver, int tabNumber) {
         ArrayList<String> tabs = new ArrayList<String>(webDriver.getWindowHandles());
         webDriver.switchTo().window(tabs.get(tabNumber));
+    }
+
+    /**
+     * Use this method to open the link in a new tab
+     * Keep in mind where is the focus of your selenium webdriver
+     * @param webDriver
+     * @param webElement
+     */
+    public static void openLinkInANewTab(WebDriver webDriver, WebElement webElement){
+        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
+        webElement.sendKeys(selectLinkOpeninNewTab);
     }
 }
