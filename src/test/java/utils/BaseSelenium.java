@@ -282,11 +282,14 @@ public class BaseSelenium {
     /**
      * Use this method to open the link in a new tab
      * Keep in mind where is the focus of your selenium webdriver
+     *
      * @param webDriver
-     * @param webElement
+     * @param by
+     * @param timeOutInSeconds
      */
-    public static void openLinkInANewTab(WebDriver webDriver, WebElement webElement){
-        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
-        webElement.sendKeys(selectLinkOpeninNewTab);
+    public static void openLinkInANewTab(WebDriver webDriver, By by, int timeOutInSeconds) {
+        presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
+        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL, Keys.RETURN);
+        webDriver.findElement(by).sendKeys(selectLinkOpeninNewTab);
     }
 }

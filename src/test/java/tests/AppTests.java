@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -13,21 +14,25 @@ import utils.BaseUsers;
  */
 
 public class AppTests extends BaseTest {
+    @BeforeTest
+    public void login() {
+        new LoginPage(webDriver)
+                .login(BaseUsers.automationUsername, BaseUsers.automationPassword)
+                .verifyHamburgerButtonIsDisplayed(true);
+    }
 
     @Test
     public void turnOnPlug() {
-        HomePage homePage = new LoginPage(webDriver)
-                .login(BaseUsers.automationUsername, BaseUsers.automationPassword);
+        HomePage homePage = new HomePage(webDriver).navigateToPage();
         changeStatePlug(homePage, true);
     }
 
     @Test
     public void turnOffPlug() {
-        HomePage homePage = new HomePage(webDriver)
-                .navigateToPage();
+        HomePage homePage = new HomePage(webDriver).navigateToPage();
         changeStatePlug(homePage, false);
     }
-    
+
     /**
      * This method is an auxiliary method to the tests, in order to be easier to maintain them
      *
@@ -36,21 +41,20 @@ public class AppTests extends BaseTest {
      */
     private PlugPage changeStatePlug(HomePage homePage, boolean turnOn) {
         PlugPage plugPage;
-        try {
             plugPage = homePage
                     .homePageIsDisplayed()
                     .clickOnProjects()
                     .openProject("QA Automation - ARG (No tocar)")
-                    .clickOnApps()
+                    .clickOnToggleConsole() //To check after the plug events in the console
+                    .clickOnAppsInANewTab()
                     .clickOnPreviewForPlug();
             if (turnOn)
                 plugPage.clickOnON();
             else
                 plugPage.clickOnOFF();
-        } finally {
-            webDriver.close(); //The focus is on the new tab & we close it
             BaseSelenium.moveFocusToAnotherTab(webDriver, 0);// move the focus to the original tab
-        }
+            String eventText = "on-off: " + turnOn;
+            BaseSelenium.textInTagIsDisplayed(webDriver, "span", eventText, true, 20, "Event in Console: " + eventText, true);
         return plugPage;
     }
 }
