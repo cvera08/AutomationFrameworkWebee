@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     private String mainSelectorForHomeOption = "//div[text()="; //To be easier to maintain (and avoid duplications)
 
     public HomePage(WebDriver webDriver) {
-        super(webDriver, "/", "Webee Visual IoT");
+        super(webDriver, "/login", "Webee Visual IoT");
     }
 
     @Override
