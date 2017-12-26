@@ -41,20 +41,20 @@ public class AppTests extends BaseTest {
      */
     private PlugPage changeStatePlug(HomePage homePage, boolean turnOn) {
         PlugPage plugPage;
-            plugPage = homePage
-                    .homePageIsDisplayed()
-                    .clickOnProjects()
-                    .openProject("QA Automation - ARG (No tocar)")
-                    .clickOnToggleConsole() //To check after the plug events in the console
-                    .clickOnAppsInANewTab()
-                    .clickOnPreviewForPlug();
-            if (turnOn)
-                plugPage.clickOnON();
-            else
-                plugPage.clickOnOFF();
-            BaseSelenium.moveFocusToAnotherTab(webDriver, 0);// move the focus to the original tab
-            String eventText = "on-off: " + turnOn;
-            BaseSelenium.textInTagIsDisplayed(webDriver, "span", eventText, true, 20, "Event in Console: " + eventText, true);
+        plugPage = homePage
+                .homePageIsDisplayed()
+                .clickOnProjects()
+                .openProject("QA Automation - ARG (No tocar)")
+                .clickOnToggleConsole() //To check after the plug events in the console
+                .clickOnAppsInANewTab()
+                .clickOnPreviewForPlug();
+        if (turnOn)
+            plugPage.clickOnON();
+        else
+            plugPage.clickOnOFF();
+        BaseSelenium.moveFocusToAnotherTab(webDriver, 0);// move the focus to the original tab
+        String eventText = "on-off: " + turnOn;
+        BaseSelenium.textInTagIsDisplayed(webDriver, "span", eventText, true, 20, "Event in Console: " + eventText, true);
         return plugPage;
     }
 }
