@@ -51,4 +51,9 @@ public class HubsPage extends BasePage {
             return value;
         }
     }
+
+    public DevicesOfAHubPage selectDevicesOptionFromAHub(String macAddress) {
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//strong[contains(text(),'" + macAddress + "')]//ancestor::div[@class='row hub-top']//button[contains(text(),'Devices')]"), 5);
+        return new DevicesOfAHubPage(webDriver);
+    }
 }

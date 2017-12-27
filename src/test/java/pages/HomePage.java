@@ -44,7 +44,7 @@ public class HomePage extends BasePage {
      * @return
      */
     public HubsPage clickOnHubs() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Hubs']"), 5);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Hubs']"), 10);
         return new HubsPage(webDriver);
     }
 

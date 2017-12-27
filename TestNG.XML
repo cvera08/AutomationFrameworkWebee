@@ -67,4 +67,14 @@
             </class>
         </classes>
     </test>
+
+    <test name="Devices From A Hub Tests">
+        <classes>
+            <class name="tests.DevicesTests">
+                <methods>
+                    <include name="removeDevicesFromHub"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
