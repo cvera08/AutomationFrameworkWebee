@@ -159,7 +159,6 @@ public class BasePage {
      * @return
      */
     public BasePage pressNoInLogoutPopup() {
-        BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, By.xpath("//div[@id='logoutModal']//button[@class='btn btn-default']"));
         By noButtonInLogoutPopupSelector = By.xpath("//div[@id='logoutModal']//button[@class='btn btn-default']");
         BaseSelenium.pressElementUsingWaits(webDriver, noButtonInLogoutPopupSelector, 5);
         BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, webDriver.findElement(noButtonInLogoutPopupSelector), 5); //To avoid false failures in the next steps
@@ -173,7 +172,6 @@ public class BasePage {
      * @return
      */
     public BasePage pressCloseInLogoutPopup() {
-        BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, By.xpath("//div[@id='logoutModal']//button[@class='close']"));
         By closeButtonInLogoutPopupSelector = By.xpath("//div[@id='logoutModal']//button[@class='close']");
         BaseSelenium.pressElementUsingWaits(webDriver, closeButtonInLogoutPopupSelector, 5);
         BaseSelenium.fluentWaitWaitingForInvisibilityOf(webDriver, webDriver.findElement(closeButtonInLogoutPopupSelector), 5);
@@ -188,7 +186,6 @@ public class BasePage {
      */
     public LoginPage pressYesInLogoutPopup() {
         By yesButtonInLogoutPopupXpath = By.xpath("//div[@id='logoutModal']//a[contains(@href,'logout.aspx')]");
-        BaseSelenium.fluentWaitWaitingElementToBeClickable(webDriver, yesButtonInLogoutPopupXpath);
         BaseSelenium.pressElementUsingWaits(webDriver, yesButtonInLogoutPopupXpath, 5);
         return new LoginPage(webDriver);
     }

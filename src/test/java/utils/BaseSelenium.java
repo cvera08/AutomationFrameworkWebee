@@ -56,7 +56,7 @@ public class BaseSelenium {
      * @param visibleTextToSelect
      */
     public static void selectTextInSelectDropDown(WebDriver webDriver, By bySelect, String visibleTextToSelect) {
-        fluentWaitWaitingElementToBeClickable(webDriver, bySelect);
+        fluentWaitWaitingElementToBeClickable(webDriver, bySelect, 5);
         Reporter.log("Selecting : " + visibleTextToSelect + " in drop down");
         new Select(webDriver.findElement(bySelect)).selectByVisibleText(visibleTextToSelect);
     }
@@ -83,10 +83,10 @@ public class BaseSelenium {
      * @param webDriver
      * @param by
      */
-    public static void fluentWaitWaitingElementToBeClickable(WebDriver webDriver, By by) {
+    private static void fluentWaitWaitingElementToBeClickable(WebDriver webDriver, By by, long timeOutInSeconds) {
         new FluentWait(webDriver)
                 //Specify the timeout of the wait
-                .withTimeout(5000, TimeUnit.MILLISECONDS)
+                .withTimeout(timeOutInSeconds, TimeUnit.SECONDS)
                 //Specify polling time
                 .pollingEvery(250, TimeUnit.MILLISECONDS)
                 //Specify what exceptions to ignore
@@ -164,7 +164,7 @@ public class BaseSelenium {
         presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
 
         //wait for clickable. FE: the element is present but there is a loading over the element/page
-        fluentWaitWaitingElementToBeClickable(webDriver, by);
+        fluentWaitWaitingElementToBeClickable(webDriver, by, timeOutInSeconds);
 
         WebElement webElement = webDriver.findElement(by);
 
@@ -191,7 +191,7 @@ public class BaseSelenium {
         presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
 
         //wait for clickable. FE: the element is present but there is a loading over the element/page
-        fluentWaitWaitingElementToBeClickable(webDriver, by);
+        fluentWaitWaitingElementToBeClickable(webDriver, by, timeOutInSeconds);
 
         WebElement webElement = webDriver.findElement(by);
 
