@@ -292,4 +292,47 @@ public class BaseSelenium {
         String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL, Keys.RETURN);
         webDriver.findElement(by).sendKeys(selectLinkOpeninNewTab);
     }
+
+    /**
+     * Open alert message while the automation is being ran
+     * You can use this, to inform to the user about certain things or to request some manual actions
+     * <p>
+     * JavaScript has three kind of popup boxes: Alert box, Confirm box, and Prompt box.
+     * alert('Hello\\nHow are you?');
+     * confirm('Press a button!');
+     * prompt('Please enter your name');
+     * https://www.w3schools.com/js/js_popup.asp
+     *
+     * @param webDriver
+     * @param alertMessage
+     */
+    public static void injectAlert(WebDriver webDriver, String alertMessage) {
+        ((JavascriptExecutor) webDriver).executeScript("alert('" + alertMessage + "');");
+    }
+
+    /**
+     * To continue after the alert is dismissed
+     * FE: to use after {@link #injectAlert}
+     *
+     * @param webDriver
+     * @param checkByMillis
+     */
+    public static void alertIsNotPresentAnymore(WebDriver webDriver, long checkByMillis) {
+        boolean present = true;
+        while (present) {
+            try {
+                webDriver.switchTo().alert();
+            } catch (NoAlertPresentException n) {
+                present = false;
+                System.out.println("<<NoAlertPresentException>>"); //Just to help in the debug
+                hardcodedDelay(checkByMillis);
+            } catch (Exception e) {
+                present = false;
+                System.out.println("<<Exception>>" + e.toString()); //Just to help in the debug
+                hardcodedDelay(checkByMillis);
+            }
+        }
+    }
+
+
 }
