@@ -117,14 +117,29 @@ public class HubsPage extends BasePage {
     }
 
     /**
-     * After you press "Ready" button in the CONNECT ETHERNET/WIFI Page
-     * You are in the CONNECT ETHERNET/WIFI Page, a pop up is displayed. EX: http://prntscr.com/hy63ai
+     * After you press "Ready" button in the CONNECT ETHERNET
+     * You are in the CONNECT ETHERNET Page, a pop up is displayed. EX: http://prntscr.com/hy63ai
      * It checks if the "Your hub is now connected." text is displayed or not
+     * Note the difference with verifyYourHubIsNowConnectedForWifiIsDisplayed that the text is "Your Hub" vs this one ("Your hub")
      *
      * @param visible
      * @return
      */
-    public HubsPage verifyYourHubIsNowConnectedIsDisplayed(boolean visible) {
+    public HubsPage verifyYourHubIsNowConnectedForEthIsDisplayed(boolean visible) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "h5", "Your hub is now connected", true, 120, "Your hub is now connected", visible);
+        return this;
+    }
+
+    /**
+     * After you press "Ready" button in the WIFI Page
+     * You are in the WIFI Page, a pop up is displayed. EX: http://prntscr.com/hy63ai
+     * It checks if the "Your Hub is now connected." text is displayed or not
+     * Note the difference with verifyYourHubIsNowConnectedForEthIsDisplayed that the text is "Your hub" vs this one ("Your Hub")
+     *
+     * @param visible
+     * @return
+     */
+    public HubsPage verifyYourHubIsNowConnectedForWifiIsDisplayed(boolean visible) {
         BaseSelenium.textInTagIsDisplayed(webDriver, "h5", "Your Hub is now connected", true, 120, "Your hub is now connected", visible);
         return this;
     }
@@ -183,6 +198,11 @@ public class HubsPage extends BasePage {
      */
     public HubsPage verifyTextIsDisplayedInH5Tag(String message, boolean visible) {
         BaseSelenium.textInTagIsDisplayed(webDriver, "h5", message, true, 5, message, visible);
+        return this;
+    }
+
+    public HubsPage verifyTextInSpanIsDisplayed(String text, boolean visible) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "span", text, true, 15, text, visible);
         return this;
     }
 

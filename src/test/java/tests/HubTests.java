@@ -51,7 +51,7 @@ public class HubTests extends BaseTest {
     @Test
     @Parameters({"alphanumericCode", "spaceName"})
     public void addValidEdgeHubControllerUsingEthernetCable(String alphanumericCode, String spaceName) {
-        new HomePage(webDriver)
+        HubsPage hubsPage = new HomePage(webDriver)
                 .navigateToPage()
                 .clickOnHubs()
                 .clickOnAddEdgeHubController()
@@ -60,9 +60,11 @@ public class HubTests extends BaseTest {
                 .pressReadyButton()
                 .verifyConnectingYourEdgeHubControllerIsDisplayed(true)
                 .pressMyHubIsReadyButton()
-                .pressUsingEthernetCableButton()
+                .verifyTextInSpanIsDisplayed("Select how would you want to connect the Hub to the Internet", true);
+        BaseSelenium.hardcodedDelay(1000);
+                hubsPage.pressUsingEthernetCableButton()
                 .presReadyButtonInConnectEthernetOrWifi()
-                .verifyYourHubIsNowConnectedIsDisplayed(true)
+                .verifyYourHubIsNowConnectedForEthIsDisplayed(true)
                 .pressContinueButtonInPopupForConnectEthernetOrWifi()
                 .enterYourHubLocation(spaceName)
                 .pressDoneButton()
@@ -111,7 +113,7 @@ public class HubTests extends BaseTest {
                 .pressDivWithText(networkName)
                 .enterWifiPassword(wifiPassword)
                 .pressButtonWithText("Connect")
-                .verifyYourHubIsNowConnectedIsDisplayed(true)
+                .verifyYourHubIsNowConnectedForWifiIsDisplayed(true)
                 .pressContinueButtonInPopupForConnectEthernetOrWifi()
                 .enterYourHubLocation(spaceName)
                 .pressDoneButton()
