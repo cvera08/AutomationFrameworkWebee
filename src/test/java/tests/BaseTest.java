@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.ITestResult;
@@ -89,7 +90,13 @@ public class BaseTest {
         this.browser = browser;
         Reporter.log("Opening browser : " + browser);
         if (browser.equals("CHROME"))
-            webDriver = new ChromeDriver();
+            if (baseProperties.getHeadlessMode()) {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                webDriver = new ChromeDriver(options);
+            } else {
+                webDriver = new ChromeDriver();
+            }
         else if (browser.equals("FIREFOX"))
             webDriver = new FirefoxDriver();
         else if (browser.equals("INTERNET_EXPLORER"))

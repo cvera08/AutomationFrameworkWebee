@@ -62,6 +62,10 @@ public class BaseProperties {
         return Integer.valueOf(properties.getProperty("RETRY_EXECUTION_FOR_FAILURES"));
     }
 
+    public boolean getHeadlessMode() {
+        return Boolean.valueOf(properties.getProperty("HEADLESS_MODE"));
+    }
+
     /**
      * Set location of config.properties and load properties from this file
      */
