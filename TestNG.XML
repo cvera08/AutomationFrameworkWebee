@@ -24,67 +24,68 @@
         </classes>
     </test>
 
-    <test name="Hubs Tests">
-        <classes>
-            <class name="tests.HubTests">
-                <methods>
-                    <include name="addEdgeHubControllerEmptyMacAddress"/>
-                    <include name="addEdgeHubControllerLessThan12Characters">
-                        <parameter name="alphanumericCode" value="lessThan12"/>
-                    </include>
-                    <include name="addValidEdgeHubControllerUsingEthernetCable">
-                        <parameter name="alphanumericCode" value="ACDBDA375626"/>
-                        <parameter name="spaceName" value="1AutomWifi"/>
-                    </include>
-                    <include name="addValidEdgeHubControllerUsingWifi">
-                        <parameter name="alphanumericCode" value="ACDBDA375626"/>
-                        <parameter name="spaceName" value="1AutomWifi"/>
-                        <parameter name="networkName" value="Vera"/>
-                        <parameter name="wifiPassword" value="dani2908"/>
-                    </include>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="Hubs Tests">-->
+        <!--<classes>-->
+            <!--<class name="tests.HubTests">-->
+                <!--<methods>-->
+                    <!--<include name="addEdgeHubControllerEmptyMacAddress"/>-->
+                    <!--<include name="addEdgeHubControllerLessThan12Characters">-->
+                        <!--<parameter name="alphanumericCode" value="lessThan12"/>-->
+                    <!--</include>-->
+                    <!--<include name="addValidEdgeHubControllerUsingEthernetCable">-->
+                        <!--<parameter name="alphanumericCode" value="ACDBDA375626"/>-->
+                        <!--<parameter name="spaceName" value="1AutomWifi"/>-->
+                    <!--</include>-->
+                    <!--<include name="addValidEdgeHubControllerUsingWifi">-->
+                        <!--<parameter name="alphanumericCode" value="ACDBDA375626"/>-->
+                        <!--<parameter name="spaceName" value="1AutomWifi"/>-->
+                        <!--<parameter name="networkName" value="Vera"/>-->
+                        <!--<parameter name="wifiPassword" value="dani2908"/>-->
+                    <!--</include>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 
-    <test name="Home Tests">
-        <classes>
-            <class name="tests.HomeTests">
-                <methods>
-                    <include name="verifyingComponentsOfUpperBar"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="Home Tests">-->
+        <!--<classes>-->
+            <!--<class name="tests.HomeTests">-->
+                <!--<methods>-->
+                    <!--<include name="verifyingComponentsOfUpperBar"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 
-    <test name="App Tests">
-        <classes>
-            <class name="tests.AppTests">
-                <methods>
-                    <include name="turnOnPlug"/>
-                    <include name="turnOffPlug"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="App Tests">-->
+        <!--<classes>-->
+            <!--<class name="tests.AppTests">-->
+                <!--<methods>-->
+                    <!--<include name="turnOnPlug"/>-->
+                    <!--<include name="turnOffPlug"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 
-    <test name="Project Tests">
-        <classes>
-            <class name="tests.ProjectTests">
-                <methods>
-                    <include name="createNewProject"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="Project Tests">-->
+        <!--<classes>-->
+            <!--<class name="tests.ProjectTests">-->
+                <!--<methods>-->
+                    <!--<include name="createNewProject"/>-->
+                    <!--<include name="createNewFlow"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 
-    <test name="Devices From A Hub Tests">
-        <classes>
-            <class name="tests.DevicesTests">
-                <methods>
-                    <include name="removeDevicesFromHub"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="Devices From A Hub Tests">-->
+        <!--<classes>-->
+            <!--<class name="tests.DevicesTests">-->
+                <!--<methods>-->
+                    <!--<include name="removeDevicesFromHub"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>
