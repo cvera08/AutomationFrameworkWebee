@@ -14,7 +14,7 @@ public class HubsPage extends BasePage {
     }
 
     public HubsPage clickOnAddEdgeHubController() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//app-hubs//text()[contains(.,'Add Edge Hub Controller')]/.."), 5);
+        BaseSelenium.pressElementUsingJavaScriptWithScrollIntoView(webDriver, By.xpath("//app-hubs//text()[contains(.,'Add Edge Hub Controller')]/.."), 5, true);
         return this;
     }
 
@@ -29,7 +29,7 @@ public class HubsPage extends BasePage {
     }
 
     public HubsPage pressReadyButton() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.cssSelector("div p"), 5);
+        BaseSelenium.pressElementUsingJavaScriptWithScrollIntoView(webDriver, By.cssSelector("div p"), 5, false);
         return this;
     }
 

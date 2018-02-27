@@ -185,6 +185,7 @@ public class BaseSelenium {
      * @param webDriver
      * @param by
      * @param timeOutInSeconds
+     * @deprecated use {@link #pressElementUsingJavaScriptWithScrollIntoView  instead}
      */
     public static void pressElementUsingJavaScript(WebDriver webDriver, By by, long timeOutInSeconds) {
         //wait for presence of element
@@ -197,6 +198,33 @@ public class BaseSelenium {
 
         //Move To Element (Scroll). To avoid unknown error: Element is not clickable at point (X, Y)
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(false);", webElement);
+
+        //perform the click
+        Reporter.log("Click on '" + webElement.getText() + "'");
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click()", webElement);
+    }
+
+    /**
+     * Use this method to click on some element when you can't use @link{pressElementUsingWaits} because it returns:
+     * >> "the element xxxxx is not clickable at point (X, Y). Other element would receive the click"
+     * in real time execution
+     * Wait for presence of element & element is clickable. Move to element & click using JS
+     *
+     * @param webDriver
+     * @param by
+     * @param scrollIntoView: true or false
+     */
+    public static void pressElementUsingJavaScriptWithScrollIntoView(WebDriver webDriver, By by, long timeOutInSeconds, boolean scrollIntoView) {
+        //wait for presence of element
+        presenceOfElementUsingExplicitWait(webDriver, timeOutInSeconds, by);
+
+        //wait for clickable. FE: the element is present but there is a loading over the element/page
+        fluentWaitWaitingElementToBeClickable(webDriver, by, timeOutInSeconds);
+
+        WebElement webElement = webDriver.findElement(by);
+
+        //Move To Element (Scroll). To avoid unknown error: Element is not clickable at point (X, Y)
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(" + scrollIntoView + ");", webElement);
 
         //perform the click
         Reporter.log("Click on '" + webElement.getText() + "'");
