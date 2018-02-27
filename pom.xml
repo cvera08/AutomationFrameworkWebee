@@ -64,7 +64,7 @@
                 <inherited>true</inherited>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>TestNG.XML</suiteXmlFile>
+                        <suiteXmlFile>JenkinsSanity.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

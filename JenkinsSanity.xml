@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Jenkins TestSuite" thread-count="10" parallel="tests">
+    <listeners>
+        <listener class-name="utils.ExtentReporterNG"/>
+        <listener class-name="utils.AnnotationTransformer"/>
+    </listeners>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="failedLogin">
+                        <parameter name="username" value="invalid"/>
+                        <parameter name="password" value="no valid"/>
+                    </include>
+
+                    <include name="successfulLogin">
+                        <parameter name="username" value="juan.prado"/>
+                        <parameter name="password" value="131313"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Hubs Tests">
+        <classes>
+            <class name="tests.HubTests">
+                <methods>
+                    <include name="addEdgeHubControllerEmptyMacAddress"/>
+                    <include name="addEdgeHubControllerLessThan12Characters">
+                        <parameter name="alphanumericCode" value="lessThan12"/>
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Home Tests">
+        <classes>
+            <class name="tests.HomeTests">
+                <methods>
+                    <include name="verifyingComponentsOfUpperBar"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

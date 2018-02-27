@@ -14,7 +14,7 @@ public class HubsPage extends BasePage {
     }
 
     public HubsPage clickOnAddEdgeHubController() {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.cssSelector("button.waves-teal"), 5);
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//app-hubs//text()[contains(.,'Add Edge Hub Controller')]/.."), 5);
         return this;
     }
 
