@@ -38,20 +38,6 @@ public class HubsPage extends BasePage {
         return this;
     }
 
-    public static enum Messages {
-        MAC_ADDRESS_CAN_NOT_BE_EMPTY("MAC address can not be empty"),
-        MAC_ADDRESS_MUST_HAVE_12_CHARACTERES("MAC address must have 12 characteres");
-        private String value;
-
-        private Messages(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
     public DevicesOfAHubPage selectDevicesOptionFromAHub(String macAddress) {
         BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//strong[contains(text(),'" + macAddress + "')]//ancestor::div[@class='row hub-top']//button[contains(text(),'Devices')]"), 5);
         return new DevicesOfAHubPage(webDriver);
@@ -204,6 +190,20 @@ public class HubsPage extends BasePage {
     public HubsPage verifyTextInSpanIsDisplayed(String text, boolean visible) {
         BaseSelenium.textInTagIsDisplayed(webDriver, "span", text, true, 15, text, visible);
         return this;
+    }
+
+    public static enum Messages {
+        MAC_ADDRESS_CAN_NOT_BE_EMPTY("MAC address can not be empty"),
+        MAC_ADDRESS_MUST_HAVE_12_CHARACTERES("MAC address must have 12 characteres");
+        private String value;
+
+        private Messages(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 
 }

@@ -62,7 +62,7 @@ public class HubTests extends BaseTest {
                 .pressMyHubIsReadyButton()
                 .verifyTextInSpanIsDisplayed("Select how would you want to connect the Hub to the Internet", true);
         BaseSelenium.hardcodedDelay(1000);
-                hubsPage.pressUsingEthernetCableButton()
+        hubsPage.pressUsingEthernetCableButton()
                 .presReadyButtonInConnectEthernetOrWifi()
                 .verifyYourHubIsNowConnectedForEthIsDisplayed(true)
                 .pressContinueButtonInPopupForConnectEthernetOrWifi()
