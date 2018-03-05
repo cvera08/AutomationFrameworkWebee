@@ -13,8 +13,15 @@ public class ProjectsPage extends BasePage {
         super(webDriver, "/projects", "Webee Visual IoT");
     }
 
-    public DevicesPage openProject(String projectName) {
-        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//app-projects//div[text()='" + projectName + "']//parent::div//following-sibling::div//a[contains(.,'Open')]"), 5);
+    public DevicesPage openProject(String projectName, boolean contains) {
+        String openProjectLocator = "//app-projects";
+        if (contains)
+            openProjectLocator += "//div[contains(text(),'" + projectName + "')]";
+        else
+            openProjectLocator += "//div[text()='" + projectName + "']";
+        openProjectLocator += "//parent::div//following-sibling::div//a[contains(.,'Open')]";
+        By by = By.xpath(openProjectLocator);
+        BaseSelenium.pressElementUsingWaits(webDriver, by, 5);
         return new DevicesPage(webDriver);
     }
 

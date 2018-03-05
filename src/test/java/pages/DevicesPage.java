@@ -36,7 +36,7 @@ public class DevicesPage extends BasePage {
         //Moving the focus to the recently openened tab
         BaseSelenium.moveFocusToAnotherTab(webDriver, 1);
         //to avoid StaleElementReferenceException:
-        BaseSelenium.presenceOfElementUsingExplicitWait(webDriver, 15, By.cssSelector("button.waves-effect.waves-light.btn.btn-small.teal.white-text.preview-btn:nth-of-type(2)"));
+        BaseSelenium.presenceOfElementUsingExplicitWait(webDriver, 30, By.cssSelector("button.waves-effect.waves-light.btn.btn-small.teal.white-text.preview-btn:nth-of-type(2)"));
         return this;
     }
 
@@ -62,4 +62,30 @@ public class DevicesPage extends BasePage {
         BaseSelenium.pressElementUsingJavaScript(webDriver, By.xpath("//app-flow-graph//i[text()='open_in_browser']"), 5);
         return this;
     }
+
+    public DevicesPage clickOnPlusCreateANewFlow() {
+        BaseSelenium.pressElementUsingJavaScript(webDriver, By.cssSelector("a[href='#newFlow']"), 5);
+        return this;
+    }
+
+    public DevicesPage enterFlowName(String flowName) {
+        BaseSelenium.enterTextUsingWaits(webDriver, By.id("flowName"), flowName, 5);
+        return this;
+    }
+
+    public DevicesPage pressSaveNewFlowButton() {
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath("//form//button[text()='Save']"), 5);
+        return this;
+    }
+
+    public DevicesPage flowTabIsDisplayed(String flowName) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "a", flowName, true, 20, flowName, true);
+        return this;
+    }
+
+    public DevicesPage projectNameIsDisplayed(String projectName, boolean visibility) {
+        BaseSelenium.textInTagIsDisplayed(webDriver, "h4", projectName, true, 5, projectName, visibility);
+        return this;
+    }
+
 }

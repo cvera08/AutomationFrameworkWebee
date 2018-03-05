@@ -47,4 +47,16 @@
         </classes>
     </test>
 
+    <test name="Project Tests">
+        <classes>
+            <class name="tests.ProjectTests">
+                <methods>
+                    <include name="createNewProject"/>
+                    <include name="createNewFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
 </suite>

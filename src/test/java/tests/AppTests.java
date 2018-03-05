@@ -44,7 +44,7 @@ public class AppTests extends BaseTest {
         plugPage = homePage
                 .homePageIsDisplayed()
                 .clickOnProjects()
-                .openProject("QA Automation - ARG (No tocar)")
+                .openProject("QA Automation - ARG (No tocar)", false)
                 .clickOnToggleConsole() //To check after the plug events in the console
                 .clickOnAppsInANewTab()
                 .clickOnPreviewForPlug();

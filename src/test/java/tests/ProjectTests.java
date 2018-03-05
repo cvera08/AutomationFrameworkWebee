@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.DevicesPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.BaseUsers;
@@ -30,5 +31,22 @@ public class ProjectTests extends BaseTest {
                 .verifyProjectIsDisplayed("QA Automation - ARG", true) //To avoid timing failure
                 .createNewProject(projectName, true)
                 .verifyProjectIsDisplayed(projectName, true);
+    }
+
+    @Test
+    public void createNewFlow() {
+        String projectName = "New Automation Project"; //To use the project created in the test "createNewProject"
+        String newFlowName = "New Automation Flow";
+        DevicesPage devicesPage = new HomePage(webDriver)
+                .navigateToPage()
+                .homePageIsDisplayed()
+                .clickOnProjects()
+                .verifyProjectIsDisplayed(projectName, true) //To avoid timing failure
+                .openProject(projectName, true)
+                .projectNameIsDisplayed(projectName, true) //To avoid false failures due timing issues
+                .clickOnPlusCreateANewFlow()
+                .enterFlowName(newFlowName)
+                .pressSaveNewFlowButton()
+                .flowTabIsDisplayed(newFlowName);
     }
 }
