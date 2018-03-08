@@ -79,11 +79,12 @@
         </classes>
     </test>
 
-    <test name="Devices From A Hub Tests">
+    <test name="Devices Tests">
         <classes>
             <class name="tests.DevicesTests">
                 <methods>
                     <include name="removeDevicesFromHub"/>
+                    <include name="removeDevicesFromDevicesSection"/>
                 </methods>
             </class>
         </classes>
