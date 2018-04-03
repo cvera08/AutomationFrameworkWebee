@@ -23,19 +23,11 @@ public class BaseProperties {
     }
 
     public String getBaseUrl() {
-        return getStagingUrl(); //Change According the environment you need to use
+        return getUrlToUse();
     }
 
-    private String getPreReleaseUrl() {
-        return properties.getProperty("PRE_RELEASE_URL");
-    }
-
-    private String getDevUrl() {
-        return properties.getProperty("DEV_URL");
-    }
-
-    private String getStagingUrl() {
-        return properties.getProperty("STG_URL");
+    private String getUrlToUse() {
+        return properties.getProperty("URL_TO_USE");
     }
 
     public boolean getCloseBrowser() {
