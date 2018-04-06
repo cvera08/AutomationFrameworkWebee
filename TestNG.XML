@@ -85,6 +85,8 @@
                 <methods>
                     <include name="removeDevicesFromHub"/>
                     <include name="removeDevicesFromDevicesSection"/>
+                    <include name="addDeviceManuallyFromDevicesSection"/>
+                    <include name="removeManualDeviceFromDevicesSection"/>
                 </methods>
             </class>
         </classes>

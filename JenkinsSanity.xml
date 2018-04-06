@@ -63,6 +63,8 @@
             <class name="tests.DevicesTests">
                 <methods>
                     <include name="removeDevicesFromDevicesSection"/>
+                    <include name="addDeviceManuallyFromDevicesSection"/>
+                    <include name="removeManualDeviceFromDevicesSection"/>
                 </methods>
             </class>
         </classes>

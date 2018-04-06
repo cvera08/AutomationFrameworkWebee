@@ -362,5 +362,13 @@ public class BaseSelenium {
         }
     }
 
+    /**
+     * Go Back in your navigation (like when you press Back Page in your browser)
+     *
+     * @param webDriver
+     */
+    public static void navigateBackInBrowser(WebDriver webDriver) {
+        webDriver.navigate().back();
+    }
 
 }

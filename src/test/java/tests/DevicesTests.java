@@ -15,6 +15,8 @@ import utils.BaseUsers;
 
 public class DevicesTests extends BaseTest {
 
+    String manualDeviceName = "addDeviceManuallyATC";
+
     @BeforeTest
     public void login() {
         new LoginPage(webDriver)
@@ -47,5 +49,33 @@ public class DevicesTests extends BaseTest {
         BaseSelenium.acceptAlertDialog(webDriver);
         BaseSelenium.hardcodedDelay(2000); //To wait for the update of the list
         devicesHomePage.verifyDeviceIsPresentInDevicesList(deviceName, false);
+    }
+
+    @Test
+    public void addDeviceManuallyFromDevicesSection() {
+        DevicesHomePage devicesHomePage = new HomePage(webDriver)
+                .navigateToPage()
+                .clickOnDevices()
+                .pressAddDeviceButton()
+                .selectAPairingMethod("Add Device manually")
+                .selectNewDeviceComponent("Water Sensor")
+                .enterNewDeviceName(manualDeviceName)
+                .selectNewDeviceConnection("Smartee Private Connection - QA Automation")
+                .pressSaveButtonForNewDevice();
+        BaseSelenium.navigateBackInBrowser(webDriver);
+        devicesHomePage.verifyDeviceIsPresentInDevicesList(manualDeviceName, true);
+    }
+
+    @Test(dependsOnMethods = "addDeviceManuallyFromDevicesSection")
+    public void removeManualDeviceFromDevicesSection() {
+        DevicesHomePage devicesHomePage = new HomePage(webDriver)
+                .navigateToPage()
+                .clickOnDevices()
+                .verifyDeviceIsPresentInDevicesList(manualDeviceName, true)
+                .pressEditButtonForADevice(manualDeviceName)
+                .pressDeleteButtonForDeviceDetail();
+        BaseSelenium.acceptAlertDialog(webDriver);
+        BaseSelenium.hardcodedDelay(2000); //To wait for the update of the list
+        devicesHomePage.verifyDeviceIsPresentInDevicesList(manualDeviceName, false);
     }
 }
