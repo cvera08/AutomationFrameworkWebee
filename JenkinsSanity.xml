@@ -70,5 +70,15 @@
         </classes>
     </test>
 
+    <test name="Users and Roles Tests">
+        <classes>
+            <class name="tests.UsersAndRolesTests">
+                <methods>
+                    <include name="createNewUser"/>
+                    <include name="deleteUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>

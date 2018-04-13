@@ -62,4 +62,9 @@ public class HomePage extends BasePage {
         BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Devices']"), 10);
         return new DevicesHomePage(webDriver);
     }
+
+    public UsersAndRolesPage clickOnUsersAndRoles() {
+        BaseSelenium.pressElementUsingWaits(webDriver, By.xpath(mainSelectorForHomeOption + "'Users & Roles']"), 10);
+        return new UsersAndRolesPage(webDriver);
+    }
 }
